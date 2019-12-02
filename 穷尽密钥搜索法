@@ -21,7 +21,7 @@ public class ShiftCipher {
 //				int temp = CipherText.charAt(i);
 				//获得该字母的序号
 				int temp = indexofAlphabet(alphabet,""+CipherText.charAt(i));
-				//解码
+				//解码       加26防止出现负数
 				temp = (temp-key+26)%26;
 				PlainText += intToAlphabetString(temp);
 //				PlainText += temp;
@@ -36,7 +36,7 @@ public class ShiftCipher {
 		
 	}	
 	
-	
+	//查找字母表的位置（下表从0开始）
 	public static int indexofAlphabet(String[] alphabet,String temp){
 		for(int i=0;i<alphabet.length;i++){
 			if(alphabet[i].equals(temp))
@@ -44,6 +44,7 @@ public class ShiftCipher {
 		}
 		return -1;
 	}
+	//根据字母表对应位置转换成字母
 	public static String intToAlphabetString (int temp){
 		return alphabet[temp];
 	}
