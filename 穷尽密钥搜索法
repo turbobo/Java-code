@@ -1,0 +1,52 @@
+package Test;
+/**
+ * 穷尽密钥法破译移位密码
+ * @author 73556
+ *
+ */
+
+public class ShiftCipher {
+	static String[] alphabet={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+	
+	public static void main(String[]args)
+	{
+		String CipherText = "BEEAKFYDJXUQYHYJIQRYHTYJIQFBQDUYJIIKFUHCQD";
+		String PlainText = "";
+		  
+		for(int key=1;key<26;key++)
+		{	
+			for(int i=0;i<CipherText.length();i++)
+			{
+				
+//				int temp = CipherText.charAt(i);
+				//获得该字母的序号
+				int temp = indexofAlphabet(alphabet,""+CipherText.charAt(i));
+				//解码
+				temp = (temp-key+26)%26;
+				PlainText += intToAlphabetString(temp);
+//				PlainText += temp;
+			}
+			System.out.println("key为"+key+"时:"+PlainText);
+			PlainText = "";
+		}
+//		System.out.println("ShiftCipher.main()charAt- "+CipherText.charAt(1));
+//		int mm=indexofAlphabet(alphabet,""+CipherText.charAt(1));
+//		System.out.println("ShiftCipher.main()mm--  "+mm);
+//		System.out.println("ShiftCipher.main()---"+intToAlphabetString(mm));
+		
+	}	
+	
+	
+	public static int indexofAlphabet(String[] alphabet,String temp){
+		for(int i=0;i<alphabet.length;i++){
+			if(alphabet[i].equals(temp))
+				return i;
+		}
+		return -1;
+	}
+	public static String intToAlphabetString (int temp){
+		return alphabet[temp];
+	}
+
+
+}
